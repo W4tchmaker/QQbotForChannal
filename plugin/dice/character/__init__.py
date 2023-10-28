@@ -3,6 +3,7 @@ from service import Service
 from .arknights import arknights_character
 from .others import gen_motivation
 from .dnd_character import gen_dnd_character
+from .maid_trpg import gen_maid_character
 
 sv = Service("gen_character")
 
@@ -37,4 +38,13 @@ async def motivation(bot, message):
         reply = await gen_motivation(message.content)
     else:
         reply = await gen_motivation(message.author.username)
+    await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)
+
+
+@sv.on_prefix('.女仆')
+async def motivation(bot, message):
+    if message.content:
+        reply = await gen_maid_character(message.content)
+    else:
+        reply = await gen_maid_character(message.author.username)
     await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)

@@ -1,7 +1,27 @@
 import random
+import csv
+
+maid_data = {}
+with open('resources\maid.csv', 'r', encoding='utf-8-sig') as file:
+    csv_reader = csv.reader(file)
+    for row in csv_reader:
+        category, option, details = row
+        if category in maid_data:
+            maid_data[category][option] = details
+        else:
+            maid_data[category] = {option: details}
 
 
-def gen_maid_character(name):
+async def get_detailed_maid(string):
+    input_str = string.rstrip('★')
+    options = maid_data[input_str]
+    if options:
+        chosen, chosen_detail = random.choice(list(options.items()))
+        result = f"\t{chosen}: {chosen_detail}\n"
+        return result
+
+
+async def gen_maid_character(name):
     string = f"{name}的女仆: \n"
     cha_attr = ["萝莉", "性感", "纯洁", "冷酷", "假小子", "骑士"]
     string = string + f"类型:{'、'.join(random.choices(cha_attr, k=2))}\n"
@@ -60,10 +80,9 @@ def gen_maid_character(name):
     for i in range(random.randint(2, 5)):
         picked_trait, trait_desc = random.choice(list(traits.items()))
         string = string + f"{picked_trait}:{trait_desc}\n"
+        if picked_trait[-1] == "★":
+            string = string + await get_detailed_maid(picked_trait)
     picked_goal, goal_desc = random.choice(list(goal.items()))
     string = string + f"目的：{picked_goal} {goal_desc}\n"
 
     return string
-
-
-print(gen_maid_character("青日"))
