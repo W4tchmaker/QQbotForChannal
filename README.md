@@ -1,0 +1,2 @@
+# QQbotForChannal
+A Private QQbotForChannal
