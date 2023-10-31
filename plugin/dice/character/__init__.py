@@ -6,6 +6,7 @@ from .dnd_character import gen_dnd_character
 from .maid_trpg import gen_maid_character
 
 sv = Service("gen_character")
+sv.help = """可生成角色包括DND/明日方舟/共鸣动机/女仆"""
 
 
 @sv.on_prefix('.dnd')
@@ -32,7 +33,7 @@ async def gen_arknights(bot, message):
     await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)
 
 
-@sv.on_prefix('.共鸣动机 ')
+@sv.on_prefix('.共鸣动机')
 async def motivation(bot, message):
     if message.content:
         reply = await gen_motivation(message.content)

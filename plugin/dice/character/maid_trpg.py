@@ -2,7 +2,7 @@ import random
 import csv
 
 maid_data = {}
-with open('resources\maid.csv', 'r', encoding='utf-8-sig') as file:
+with open('resources/maid.csv', 'r', encoding='utf-8-sig') as file:
     csv_reader = csv.reader(file)
     for row in csv_reader:
         category, option, details = row
