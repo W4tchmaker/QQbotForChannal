@@ -18,10 +18,10 @@ async def get_help(bot, message):
 async def search_target(bot, message):
     uma_name_tmp = str(message.content).replace('-f', '')
     is_force = True if str(message.content).endswith('-f') else False
-    current_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uma_info\\config.json')
+    current_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uma_info/config.json')
     with open(current_dir, 'r', encoding='UTF-8') as f:
         f_data = json.load(f)
-    with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uma_info\\replace_dict.json'), 'r',
+    with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'uma_info/replace_dict.json'), 'r',
               encoding='UTF-8') as af:
         replace_data = json.load(af)
     uma_target = ''
