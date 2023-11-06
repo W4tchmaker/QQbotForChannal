@@ -1,10 +1,14 @@
 from botpy import logging
 import os
+from botpy.logging import DEFAULT_FILE_HANDLER
+
+DEFAULT_FILE_HANDLER["filename"] = os.path.join(os.getcwd(), "log", "%(name)s.log")
 
 _log = logging.get_logger()
 
 if not os.path.exists("markdown"):
     os.mkdir("markdown")
+
 
 class MarkdownLogger:
     def __init__(self):
