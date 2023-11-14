@@ -107,3 +107,12 @@ def roll(dice_num=1, dice_size=100, symbol="+"):
         return "(" + symbol.join(result) + ")"
     else:
         return str(random.randint(1, dice_size))
+
+
+def get_relation(name):
+    result = ""
+    result = result + f"{name}对博士好感为{random.randint(1,100)}\n"
+    result = result + f"{name}对博士信任为{random.randint(1, 100)}\n"
+    result = result + f"博士对{name}好感为{random.randint(1, 100)}\n"
+    result = result + f"博士对{name}信任为{random.randint(1, 100)}"
+    return result

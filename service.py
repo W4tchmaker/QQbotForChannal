@@ -190,3 +190,4 @@ class Service:
             return func
 
         return deco
+

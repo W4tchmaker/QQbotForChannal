@@ -1,5 +1,5 @@
 from service import Service
-from .dice import eval_string
+from .dice import eval_string,get_relation
 from .aa import random_choice
 from .anjia import aj
 from . import character
@@ -47,7 +47,7 @@ async def anke_from_message(bot, message):
         await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)
 
 
-@sv.on_full_match('安价帮助')
+@sv.on_full_match('.help')
 async def anjia_help(bot, message):
     await bot.send(channel_id=message.channel_id, content=sv.help, reply_message=message.id)
 
@@ -111,3 +111,9 @@ async def delete_anjia(bot, message):
         reply = await aj.delete_anke(channel_id=message.channel_id, num=int(message.content),
                                      is_admin=message.author.is_admin)
         await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)
+
+
+@sv.on_prefix('.关系骰 ')
+async def relation(bot, message):
+    reply = get_relation(message.content)
+    await bot.send(channel_id=message.channel_id, content=reply, reply_message=message.id)
